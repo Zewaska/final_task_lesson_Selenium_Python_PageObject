@@ -11,11 +11,11 @@ class ProductPage(BasePage):
         assert "?promo=newYear" in self.browser.current_url, "word \"?promo=newYear\" not in url"
     
     def should_be_add_book_in_basket(self):
-        link = self.browser.find_element(*ProductPageLocators.BASCET_LINK)
+        link = self.browser.find_element(*ProductPageLocators.BASCET_ADD_LINK)
         link.click()
 
     def should_be_add_bascet_button(self):
-        assert self.is_element_present(*ProductPageLocators.BASCET_LINK), "Bascet form is not presented"        
+        assert self.is_element_present(*ProductPageLocators.BASCET_ADD_LINK), "Bascet form is not presented"        
 
     def should_be_dress_name(self):
         assert self.browser.find_element(*ProductPageLocators.BOOK_NAME).text == self.browser.find_element(*ProductPageLocators.BOOK_NAME_ALERT).text, "Another Book Name"
@@ -28,3 +28,7 @@ class ProductPage(BasePage):
 
     def should_be_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Message not is disappeared, but should be"
+
+    def go_to_basket_page(self):
+        self.link = self.browser.find_element(*ProductPageLocators.BASKET_LINK)
+        self.link.click()
